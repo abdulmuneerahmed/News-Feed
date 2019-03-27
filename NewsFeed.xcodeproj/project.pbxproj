@@ -16,6 +16,9 @@
 		842E4BCE224B5BD600D936C8 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BCD224B5BD600D936C8 /* DropDownCell.swift */; };
 		842E4BD1224B627C00D936C8 /* DropDownModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BD0224B627C00D936C8 /* DropDownModel.swift */; };
 		842E4BD3224B62B300D936C8 /* DropDownService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BD2224B62B300D936C8 /* DropDownService.swift */; };
+		842E4BD7224B803B00D936C8 /* StoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BD6224B803B00D936C8 /* StoryData.swift */; };
+		842E4BDA224B90BD00D936C8 /* NewsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BD9224B90BD00D936C8 /* NewsApi.swift */; };
+		842E4BE0224BC61C00D936C8 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BDF224BC61C00D936C8 /* NewsData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		842E4BCD224B5BD600D936C8 /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		842E4BD0224B627C00D936C8 /* DropDownModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownModel.swift; sourceTree = "<group>"; };
 		842E4BD2224B62B300D936C8 /* DropDownService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownService.swift; sourceTree = "<group>"; };
+		842E4BD6224B803B00D936C8 /* StoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryData.swift; sourceTree = "<group>"; };
+		842E4BD9224B90BD00D936C8 /* NewsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApi.swift; sourceTree = "<group>"; };
+		842E4BDF224BC61C00D936C8 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,7 @@
 		842E4BAF224B523E00D936C8 /* NewsFeed */ = {
 			isa = PBXGroup;
 			children = (
+				842E4BD8224B909E00D936C8 /* Apis */,
 				842E4BC4224B590500D936C8 /* Model */,
 				842E4BC5224B590B00D936C8 /* View */,
 				842E4BC6224B591200D936C8 /* Controller */,
@@ -74,6 +81,8 @@
 		842E4BC4224B590500D936C8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				842E4BDD224BC60100D936C8 /* NewsData */,
+				842E4BD5224B801000D936C8 /* StoryData */,
 				842E4BCF224B625800D936C8 /* DropDown */,
 			);
 			path = Model;
@@ -122,6 +131,30 @@
 				842E4BD2224B62B300D936C8 /* DropDownService.swift */,
 			);
 			path = DropDown;
+			sourceTree = "<group>";
+		};
+		842E4BD5224B801000D936C8 /* StoryData */ = {
+			isa = PBXGroup;
+			children = (
+				842E4BD6224B803B00D936C8 /* StoryData.swift */,
+			);
+			path = StoryData;
+			sourceTree = "<group>";
+		};
+		842E4BD8224B909E00D936C8 /* Apis */ = {
+			isa = PBXGroup;
+			children = (
+				842E4BD9224B90BD00D936C8 /* NewsApi.swift */,
+			);
+			path = Apis;
+			sourceTree = "<group>";
+		};
+		842E4BDD224BC60100D936C8 /* NewsData */ = {
+			isa = PBXGroup;
+			children = (
+				842E4BDF224BC61C00D936C8 /* NewsData.swift */,
+			);
+			path = NewsData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,8 +231,11 @@
 				842E4BB3224B523E00D936C8 /* MainVC.swift in Sources */,
 				842E4BC9224B5A4600D936C8 /* MainvcExtension.swift in Sources */,
 				842E4BB1224B523E00D936C8 /* AppDelegate.swift in Sources */,
+				842E4BE0224BC61C00D936C8 /* NewsData.swift in Sources */,
 				842E4BD1224B627C00D936C8 /* DropDownModel.swift in Sources */,
+				842E4BD7224B803B00D936C8 /* StoryData.swift in Sources */,
 				842E4BD3224B62B300D936C8 /* DropDownService.swift in Sources */,
+				842E4BDA224B90BD00D936C8 /* NewsApi.swift in Sources */,
 				842E4BCC224B5BC900D936C8 /* DropDownMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
