@@ -13,8 +13,10 @@ class MainVC: UIViewController {
 //              MARK:- Variable Declaration
     
     // Nav button Title variable
-    var navButtonTitle = "home"
+   fileprivate lazy var navButtonTitle = "home"
     
+    var dropDownHeightAnchor:NSLayoutConstraint!
+    var tableViewTopAnchor:NSLayoutConstraint!
     
     
 //        MARK:- View init Methods
@@ -22,6 +24,8 @@ class MainVC: UIViewController {
     override func loadView() {
         super.loadView()
         navBarSetup()
+        addDropDown()
+        addTableView()
     }
     
     override func viewDidLoad() {
@@ -37,9 +41,9 @@ class MainVC: UIViewController {
 //       MARK:- SubViews Declaration
     
     //TableView Declare & initialization
-    lazy var tableView: UITableView = {
+    fileprivate lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .red
         tableView.showsVerticalScrollIndicator = false
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +51,7 @@ class MainVC: UIViewController {
     }()
     
     //Nav Bar Button Setup
-    lazy var navButton: UIButton = {
+    fileprivate lazy var navButton: UIButton = {
         let button = UIButton()
         button.tag = 0
         button.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
@@ -57,26 +61,88 @@ class MainVC: UIViewController {
         button.addTarget(self, action: #selector(navButtonAction(sender:)), for: .touchUpInside)
         return button
     }()
-
     
+    fileprivate lazy var dropDownView:DropDownMenu = {
+        let dropDown = DropDownMenu()
+        dropDown.delegate = self
+        dropDown.translatesAutoresizingMaskIntoConstraints = false
+        return dropDown
+    }()
+
+
 //      MARK:- Function Declarations
     
     //Nav Bar Setup Functions
     private func navBarSetup(){
-        view.backgroundColor = .white
+        view.backgroundColor = .orange
         navigationController?.navigationBar.barTintColor = .orange
         navigationItem.titleView = navButton
     }
     
+    private func addDropDown(){
+        view.addSubview(dropDownView)
+        dropDownConstraints()
+    }
     
+    private func dropDownConstraints(){
+        NSLayoutConstraint.activate([
+            dropDownView.topAnchor.constraint(equalTo: view.topAnchor),
+            dropDownView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            dropDownView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+        dropDownHeightAnchor = dropDownView.heightAnchor.constraint(equalToConstant: 0)
+        dropDownHeightAnchor.isActive = true
+    }
+    
+    private func addTableView(){
+        view.addSubview(tableView)
+        tableViewConstraints()
+    }
+    private func tableViewConstraints(){
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        tableViewTopAnchor = tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        tableViewTopAnchor.isActive = true
+    }
+    
+     fileprivate func showDropDown(){
+        navButton.setTitle("\(navButtonTitle) ⌃", for: .normal)
+        dropDownHeightAnchor.constant = view.frame.height/3
+        tableViewTopAnchor.isActive = false
+        updateTableViewTopAnchor(activate: true)
+    }
+    
+     fileprivate func hideDropDown(){
+        navButton.setTitle("\(navButtonTitle) ⌄", for: .normal)
+        dropDownHeightAnchor.constant = 0
+        tableViewTopAnchor.isActive = false
+        updateTableViewTopAnchor(activate: false)
+    }
+    
+    private func updateTableViewTopAnchor(activate:Bool){
+        tableViewTopAnchor = activate ? tableView.topAnchor.constraint(equalTo: dropDownView.bottomAnchor) : tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            tableViewTopAnchor.isActive = true
 
-    
-//     MARK:-Selectors
-    
-    //Nav Bar Button Action
-    @objc func navButtonAction(sender:UIButton){
         
     }
     
+    func animatedDropDown(tag:Int){
+        UIView.animate(withDuration: 0.5) {
+            tag == 0 ? self.showDropDown() : self.hideDropDown()
+            self.view.layoutIfNeeded()
+        }
+    }
 }
 
+
+extension MainVC:DropDownDelegate{
+    func selectedMenu(item: DropDown) {
+        navButtonTitle = item.section
+        navButton.setTitle("\(navButtonTitle) ⌄", for: .normal)
+        animatedDropDown(tag: 1)
+        navButton.tag = 0
+    }
+}
