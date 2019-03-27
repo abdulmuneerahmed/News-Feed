@@ -16,7 +16,7 @@ extension MainVC{
     @objc func navButtonAction(sender:UIButton){
         switch sender.tag {
         case 1:
-           animatedDropDown(tag: sender.tag)
+            animatedDropDown(tag: sender.tag)
             sender.tag = 0
         default:
             animatedDropDown(tag: sender.tag)

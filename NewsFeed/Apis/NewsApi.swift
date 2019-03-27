@@ -12,6 +12,8 @@ class NewsApi{
 
     static let service = NewsApi()
     
+    private let service = NewsDataService.service
+    
     private let requestedAPI = ApiKey.key.getApi()
     
     private let headerValue = ApiKey.headerValue.getApi()
@@ -35,7 +37,9 @@ class NewsApi{
     
     
     func retrieveDataFromServer(session:URLSession,request:URLRequest,completion: @escaping(_ status:Bool)->()){
-        let task = session.dataTask(with: request) {(data, response, error) in
+        let task = session.dataTask(with: request) {[weak self](data, response, error) in
+            
+            guard let self = self else{return}
             
             if let error = error{
                 print(error.localizedDescription)
@@ -49,10 +53,25 @@ class NewsApi{
             guard let responseData = data else{return}
             
             do{
+                self.service.newsDetails.removeAll()
                 let decoder = JSONDecoder()
                 let storyData = try decoder.decode(StoryData.self, from: responseData)
                
-                print(storyData)
+                for results in storyData.results{
+                    let title = results.title
+                    let abstract = results.abstract
+                    let section = results.section
+                    let byline = results.byline
+                    if results.multimedia.isEmpty{
+                        self.service.newsDetails.append(NewsData(imageString: "", headLines: title, description: abstract, newsType: section, author: byline))
+                    }else{
+                        let imageData = results.multimedia[3].url
+                        self.service.newsDetails.append(NewsData(imageString: imageData, headLines: title, description: abstract, newsType: section, author: byline))
+                    }
+                    
+                    
+                }
+                completion(true)
                 
             }catch let errore as NSError{
                 print(errore.userInfo)

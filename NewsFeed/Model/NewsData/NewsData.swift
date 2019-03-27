@@ -14,4 +14,12 @@ struct NewsData {
     let description:String
     let newsType:String
     let author:String
+    
+    init(imageString:String,headLines:String,description:String,newsType:String,author:String) {
+        self.imageString = imageString
+        self.headLines = headLines
+        self.description = description
+        self.newsType = newsType
+        self.author = author
+    }
 }

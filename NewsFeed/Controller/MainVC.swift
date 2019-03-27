@@ -10,19 +10,24 @@ import UIKit
 
 class MainVC: UIViewController {
     
-//              MARK:- Variable Declaration
+    //              MARK:- Variable Declaration
     
     // Nav button Title variable
+    
+    private let reusableCell = "CellId"
+    
     fileprivate lazy var navButtonTitle = "home"
     
     fileprivate let newsService = NewsApi.service
+    
+    fileprivate let newsDataService = NewsDataService.service
     
     var dropDownHeightAnchor:NSLayoutConstraint!
     var tableViewTopAnchor:NSLayoutConstraint!
     
     
-//        MARK:- View init Methods
-
+    //        MARK:- View init Methods
+    
     override func loadView() {
         super.loadView()
         navBarSetup()
@@ -32,20 +37,23 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableViewDataSetup()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
     }
     
- 
-//       MARK:- SubViews Declaration
+    
+    //       MARK:- SubViews Declaration
     
     //TableView Declare & initialization
     fileprivate lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .red
+        tableView.backgroundColor = .white
+//        tableView.isHidden = true
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 500
         tableView.showsVerticalScrollIndicator = false
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -70,9 +78,11 @@ class MainVC: UIViewController {
         dropDown.translatesAutoresizingMaskIntoConstraints = false
         return dropDown
     }()
-
-
-//      MARK:- Function Declarations
+    
+//    fileprivate lazy var spinner:
+    
+    
+    //      MARK:- Function Declarations
     
     //Nav Bar Setup Functions
     private func navBarSetup(){
@@ -110,14 +120,20 @@ class MainVC: UIViewController {
         tableViewTopAnchor.isActive = true
     }
     
-     fileprivate func showDropDown(){
+    fileprivate func showDropDown(){
         navButton.setTitle("\(navButtonTitle) ⌃", for: .normal)
         dropDownHeightAnchor.constant = view.frame.height/3
         tableViewTopAnchor.isActive = false
         updateTableViewTopAnchor(activate: true)
     }
     
-     fileprivate func hideDropDown(){
+    fileprivate func tableViewDataSetup(){
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(NewsDataCell.self, forCellReuseIdentifier: reusableCell)
+    }
+    
+    fileprivate func hideDropDown(){
         navButton.setTitle("\(navButtonTitle) ⌄", for: .normal)
         dropDownHeightAnchor.constant = 0
         tableViewTopAnchor.isActive = false
@@ -126,8 +142,8 @@ class MainVC: UIViewController {
     
     private func updateTableViewTopAnchor(activate:Bool){
         tableViewTopAnchor = activate ? tableView.topAnchor.constraint(equalTo: dropDownView.bottomAnchor) : tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-            tableViewTopAnchor.isActive = true
-
+        tableViewTopAnchor.isActive = true
+        
         
     }
     
@@ -160,11 +176,29 @@ extension MainVC:DropDownDelegate{
             return
         }
         
-        newsService.retrieveDataFromServer(session: session, request: request) { (status) in
+        newsService.retrieveDataFromServer(session: session, request: request) {[weak self] (status) in
+            
+            guard let self = self else{return}
             print("completed")
+            print(NewsDataService.service.getNewsDetails().count)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
         }
         
     }
 }
 
-
+extension MainVC:UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        print(newsDataService.getNewsDetails().count)
+        return newsDataService.getNewsDetails().count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reusableCell, for: indexPath) as? NewsDataCell else{return UITableViewCell()}
+        cell.updateCellData(newsData: newsDataService.getNewsDetails()[indexPath.row])
+        return cell
+    }
+}

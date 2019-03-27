@@ -19,6 +19,9 @@
 		842E4BD7224B803B00D936C8 /* StoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BD6224B803B00D936C8 /* StoryData.swift */; };
 		842E4BDA224B90BD00D936C8 /* NewsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BD9224B90BD00D936C8 /* NewsApi.swift */; };
 		842E4BE0224BC61C00D936C8 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BDF224BC61C00D936C8 /* NewsData.swift */; };
+		842E4BE2224BC88A00D936C8 /* NewsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BE1224BC88A00D936C8 /* NewsDataService.swift */; };
+		842E4BE5224BD42B00D936C8 /* NewsDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BE4224BD42B00D936C8 /* NewsDataCell.swift */; };
+		842E4BE8224BDB2600D936C8 /* imageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BE7224BDB2600D936C8 /* imageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		842E4BD6224B803B00D936C8 /* StoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryData.swift; sourceTree = "<group>"; };
 		842E4BD9224B90BD00D936C8 /* NewsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApi.swift; sourceTree = "<group>"; };
 		842E4BDF224BC61C00D936C8 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
+		842E4BE1224BC88A00D936C8 /* NewsDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataService.swift; sourceTree = "<group>"; };
+		842E4BE4224BD42B00D936C8 /* NewsDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataCell.swift; sourceTree = "<group>"; };
+		842E4BE7224BDB2600D936C8 /* imageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,8 @@
 		842E4BC5224B590B00D936C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				842E4BE6224BDB0400D936C8 /* Extension */,
+				842E4BE3224BD3FD00D936C8 /* NewDataCell */,
 				842E4BCA224B5BAC00D936C8 /* DropDownMenu */,
 				842E4BB9224B523F00D936C8 /* LaunchScreen.storyboard */,
 				842E4BB7224B523F00D936C8 /* Assets.xcassets */,
@@ -103,16 +111,8 @@
 			children = (
 				842E4BB2224B523E00D936C8 /* MainVC.swift */,
 				842E4BC8224B5A4600D936C8 /* MainvcExtension.swift */,
-				842E4BC7224B5A2B00D936C8 /* New Group */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		842E4BC7224B5A2B00D936C8 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		842E4BCA224B5BAC00D936C8 /* DropDownMenu */ = {
@@ -153,8 +153,25 @@
 			isa = PBXGroup;
 			children = (
 				842E4BDF224BC61C00D936C8 /* NewsData.swift */,
+				842E4BE1224BC88A00D936C8 /* NewsDataService.swift */,
 			);
 			path = NewsData;
+			sourceTree = "<group>";
+		};
+		842E4BE3224BD3FD00D936C8 /* NewDataCell */ = {
+			isa = PBXGroup;
+			children = (
+				842E4BE4224BD42B00D936C8 /* NewsDataCell.swift */,
+			);
+			path = NewDataCell;
+			sourceTree = "<group>";
+		};
+		842E4BE6224BDB0400D936C8 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				842E4BE7224BDB2600D936C8 /* imageExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,8 +248,11 @@
 				842E4BB3224B523E00D936C8 /* MainVC.swift in Sources */,
 				842E4BC9224B5A4600D936C8 /* MainvcExtension.swift in Sources */,
 				842E4BB1224B523E00D936C8 /* AppDelegate.swift in Sources */,
+				842E4BE5224BD42B00D936C8 /* NewsDataCell.swift in Sources */,
 				842E4BE0224BC61C00D936C8 /* NewsData.swift in Sources */,
 				842E4BD1224B627C00D936C8 /* DropDownModel.swift in Sources */,
+				842E4BE2224BC88A00D936C8 /* NewsDataService.swift in Sources */,
+				842E4BE8224BDB2600D936C8 /* imageExtension.swift in Sources */,
 				842E4BD7224B803B00D936C8 /* StoryData.swift in Sources */,
 				842E4BD3224B62B300D936C8 /* DropDownService.swift in Sources */,
 				842E4BDA224B90BD00D936C8 /* NewsApi.swift in Sources */,
