@@ -14,13 +14,13 @@ class MainVC: UIViewController {
     
     // Nav button Title variable
     
-    private let reusableCell = "CellId"
+     let reusableCell = "CellId"
     
-    fileprivate lazy var navButtonTitle = "home"
+     lazy var navButtonTitle = "home"
     
-    fileprivate let newsService = NewsApi.service
+     let newsService = NewsApi.service
     
-    fileprivate let newsDataService = NewsDataService.service
+     let newsDataService = NewsDataService.service
     
     var dropDownHeightAnchor:NSLayoutConstraint!
     var tableViewContainerTopAnchor:NSLayoutConstraint!
@@ -64,7 +64,7 @@ class MainVC: UIViewController {
     }()
     
     //TableView Declare & initialization
-    fileprivate lazy var tableView: UITableView = {
+     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .white
         //        tableView.isHidden = true
@@ -76,7 +76,7 @@ class MainVC: UIViewController {
     }()
     
     //Nav Bar Button Setup
-    fileprivate lazy var navButton: UIButton = {
+     lazy var navButton: UIButton = {
         let button = UIButton()
         button.tag = 0
         button.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
@@ -94,7 +94,7 @@ class MainVC: UIViewController {
         return dropDown
     }()
     
-    fileprivate lazy var spinner:UIActivityIndicatorView = {
+    lazy var spinner:UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
         spinner.hidesWhenStopped = true
         spinner.style = .whiteLarge
@@ -217,62 +217,5 @@ class MainVC: UIViewController {
 }
 
 
-extension MainVC:DropDownDelegate{
-    func selectedMenu(item: DropDown) {
-        let navItem = navButtonTitle
-        navButtonTitle = item.section
-        navButton.setTitle("\(navButtonTitle) ⌄", for: .normal)
-        animatedDropDown(tag: 1)
-        navButton.tag = 0
-        guard (navItem != item.section) else{return}
-        retriveData(item: item.section)
-    }
-    
-    
-    func retriveData(item:String){
-        let requestInfo = newsService.createRequest(section: item)
-        
-        guard let session = requestInfo?.session, let request = requestInfo?.request else {
-            return
-        }
-        tableClean()
-        newsService.retrieveDataFromServer(session: session, request: request) {[weak self] (status) in
-            
-            guard let self = self else{return}
-            
-            DispatchQueue.main.async {
-                self.completionTask()
-            }
-            
-        }
-        
-    }
-    
-    fileprivate func completionTask(){
-        tableView.reloadData()
-        tableView.isHidden = false
-        spinner.stopAnimating()
-    }
-    
-    fileprivate func tableClean(){
-        tableView.isHidden = true
-        spinner.startAnimating()
-        tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-    }
-}
 
-extension MainVC:UITableViewDelegate,UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsDataService.getNewsDetails().count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reusableCell, for: indexPath) as? NewsDataCell else{return UITableViewCell()}
-        cell.selectionStyle = .none
-        cell.updateCellData(newsData: newsDataService.getNewsDetails()[indexPath.row])
-        return cell
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-}
+

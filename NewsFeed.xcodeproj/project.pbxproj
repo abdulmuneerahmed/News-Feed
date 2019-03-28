@@ -11,7 +11,7 @@
 		842E4BB3224B523E00D936C8 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BB2224B523E00D936C8 /* MainVC.swift */; };
 		842E4BB8224B523F00D936C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842E4BB7224B523F00D936C8 /* Assets.xcassets */; };
 		842E4BBB224B523F00D936C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842E4BB9224B523F00D936C8 /* LaunchScreen.storyboard */; };
-		842E4BC9224B5A4600D936C8 /* MainvcExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BC8224B5A4600D936C8 /* MainvcExtension.swift */; };
+		842E4BC9224B5A4600D936C8 /* PresentingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BC8224B5A4600D936C8 /* PresentingMenu.swift */; };
 		842E4BCC224B5BC900D936C8 /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BCB224B5BC900D936C8 /* DropDownMenu.swift */; };
 		842E4BCE224B5BD600D936C8 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BCD224B5BD600D936C8 /* DropDownCell.swift */; };
 		842E4BD1224B627C00D936C8 /* DropDownModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BD0224B627C00D936C8 /* DropDownModel.swift */; };
@@ -22,6 +22,8 @@
 		842E4BE2224BC88A00D936C8 /* NewsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BE1224BC88A00D936C8 /* NewsDataService.swift */; };
 		842E4BE5224BD42B00D936C8 /* NewsDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BE4224BD42B00D936C8 /* NewsDataCell.swift */; };
 		842E4BE8224BDB2600D936C8 /* imageClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BE7224BDB2600D936C8 /* imageClass.swift */; };
+		8433FC96224D079D00FBFED5 /* PresentingTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FC95224D079D00FBFED5 /* PresentingTableData.swift */; };
+		8433FC98224D07E000FBFED5 /* HandlingUserMenuAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433FC97224D07E000FBFED5 /* HandlingUserMenuAction.swift */; };
 		A4A2FBCE7B26E20293C58575 /* Pods_NewsFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAB03697E6ACDD61282A44 /* Pods_NewsFeed.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +37,7 @@
 		842E4BB7224B523F00D936C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		842E4BBA224B523F00D936C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		842E4BBC224B523F00D936C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		842E4BC8224B5A4600D936C8 /* MainvcExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainvcExtension.swift; sourceTree = "<group>"; };
+		842E4BC8224B5A4600D936C8 /* PresentingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingMenu.swift; sourceTree = "<group>"; };
 		842E4BCB224B5BC900D936C8 /* DropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenu.swift; sourceTree = "<group>"; };
 		842E4BCD224B5BD600D936C8 /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		842E4BD0224B627C00D936C8 /* DropDownModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownModel.swift; sourceTree = "<group>"; };
@@ -46,6 +48,8 @@
 		842E4BE1224BC88A00D936C8 /* NewsDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataService.swift; sourceTree = "<group>"; };
 		842E4BE4224BD42B00D936C8 /* NewsDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataCell.swift; sourceTree = "<group>"; };
 		842E4BE7224BDB2600D936C8 /* imageClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageClass.swift; sourceTree = "<group>"; };
+		8433FC95224D079D00FBFED5 /* PresentingTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingTableData.swift; sourceTree = "<group>"; };
+		8433FC97224D07E000FBFED5 /* HandlingUserMenuAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlingUserMenuAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,7 @@
 		842E4BC5224B590B00D936C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8433FC99224D089800FBFED5 /* ViewControllers */,
 				842E4BE6224BDB0400D936C8 /* CustomImageClass */,
 				842E4BE3224BD3FD00D936C8 /* NewDataCell */,
 				842E4BCA224B5BAC00D936C8 /* DropDownMenu */,
@@ -133,8 +138,9 @@
 		842E4BC6224B591200D936C8 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				842E4BB2224B523E00D936C8 /* MainVC.swift */,
-				842E4BC8224B5A4600D936C8 /* MainvcExtension.swift */,
+				842E4BC8224B5A4600D936C8 /* PresentingMenu.swift */,
+				8433FC95224D079D00FBFED5 /* PresentingTableData.swift */,
+				8433FC97224D07E000FBFED5 /* HandlingUserMenuAction.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -204,6 +210,14 @@
 				842E4BB0224B523E00D936C8 /* AppDelegate.swift */,
 			);
 			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		8433FC99224D089800FBFED5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				842E4BB2224B523E00D936C8 /* MainVC.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,7 +341,7 @@
 			files = (
 				842E4BCE224B5BD600D936C8 /* DropDownCell.swift in Sources */,
 				842E4BB3224B523E00D936C8 /* MainVC.swift in Sources */,
-				842E4BC9224B5A4600D936C8 /* MainvcExtension.swift in Sources */,
+				842E4BC9224B5A4600D936C8 /* PresentingMenu.swift in Sources */,
 				842E4BB1224B523E00D936C8 /* AppDelegate.swift in Sources */,
 				842E4BE5224BD42B00D936C8 /* NewsDataCell.swift in Sources */,
 				842E4BE0224BC61C00D936C8 /* NewsData.swift in Sources */,
@@ -335,9 +349,11 @@
 				842E4BE2224BC88A00D936C8 /* NewsDataService.swift in Sources */,
 				842E4BE8224BDB2600D936C8 /* imageClass.swift in Sources */,
 				842E4BD7224B803B00D936C8 /* StoryData.swift in Sources */,
+				8433FC98224D07E000FBFED5 /* HandlingUserMenuAction.swift in Sources */,
 				842E4BD3224B62B300D936C8 /* DropDownService.swift in Sources */,
 				842E4BDA224B90BD00D936C8 /* NewsApi.swift in Sources */,
 				842E4BCC224B5BC900D936C8 /* DropDownMenu.swift in Sources */,
+				8433FC96224D079D00FBFED5 /* PresentingTableData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
