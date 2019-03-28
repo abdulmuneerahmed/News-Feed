@@ -125,6 +125,7 @@
 		842E4BC5224B590B00D936C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8433FC9C224D09EF00FBFED5 /* ConnectionView */,
 				8433FC99224D089800FBFED5 /* ViewControllers */,
 				842E4BE6224BDB0400D936C8 /* CustomImageClass */,
 				842E4BE3224BD3FD00D936C8 /* NewDataCell */,
@@ -218,6 +219,13 @@
 				842E4BB2224B523E00D936C8 /* MainVC.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8433FC9C224D09EF00FBFED5 /* ConnectionView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ConnectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

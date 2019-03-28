@@ -67,7 +67,7 @@ class MainVC: UIViewController {
      lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .white
-        //        tableView.isHidden = true
+        tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.tableFooterView = UIView(frame: .zero)

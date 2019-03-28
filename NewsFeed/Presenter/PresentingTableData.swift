@@ -16,7 +16,6 @@ extension MainVC:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reusableCell, for: indexPath) as? NewsDataCell else{return UITableViewCell()}
-        cell.selectionStyle = .none
         cell.updateCellData(newsData: newsDataService.getNewsDetails()[indexPath.row])
         return cell
     }
