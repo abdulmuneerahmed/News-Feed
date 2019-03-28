@@ -22,6 +22,7 @@ class MainVC: UIViewController {
     
      let newsDataService = NewsDataService.service
     
+    
     var dropDownHeightAnchor:NSLayoutConstraint!
     var tableViewContainerTopAnchor:NSLayoutConstraint!
     
@@ -41,6 +42,7 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         tableViewDataSetup()
         retriveData()
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
