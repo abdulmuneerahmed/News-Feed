@@ -23,7 +23,7 @@ class MainVC: UIViewController {
     fileprivate let newsDataService = NewsDataService.service
     
     var dropDownHeightAnchor:NSLayoutConstraint!
-    var tableViewTopAnchor:NSLayoutConstraint!
+    var tableViewContainerTopAnchor:NSLayoutConstraint!
     
     
     //        MARK:- View init Methods
@@ -32,12 +32,20 @@ class MainVC: UIViewController {
         super.loadView()
         navBarSetup()
         addDropDown()
+        addtableViewContainer()
         addTableView()
+        addSpinner()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewDataSetup()
+        retriveData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -47,13 +55,20 @@ class MainVC: UIViewController {
     
     //       MARK:- SubViews Declaration
     
+    
+    fileprivate lazy var tableviewContainer:UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     //TableView Declare & initialization
     fileprivate lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .white
-//        tableView.isHidden = true
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 500
+        //        tableView.isHidden = true
+        tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -79,7 +94,14 @@ class MainVC: UIViewController {
         return dropDown
     }()
     
-//    fileprivate lazy var spinner:
+    fileprivate lazy var spinner:UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView()
+        spinner.hidesWhenStopped = true
+        spinner.style = .whiteLarge
+        spinner.color = UIColor(red: 0/255, green: 150/255, blue: 255/255, alpha: 1)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        return spinner
+    }()
     
     
     //      MARK:- Function Declarations
@@ -106,24 +128,52 @@ class MainVC: UIViewController {
         dropDownHeightAnchor.isActive = true
     }
     
+    private func addtableViewContainer(){
+        view.addSubview(tableviewContainer)
+        tableViewContanierConstraints()
+    }
+    
     private func addTableView(){
-        view.addSubview(tableView)
+        tableviewContainer.addSubview(tableView)
         tableViewConstraints()
     }
+    
+    
+    
+    private func tableViewContanierConstraints(){
+        NSLayoutConstraint.activate([
+            tableviewContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableviewContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableviewContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        tableViewContainerTopAnchor = tableviewContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        tableViewContainerTopAnchor.isActive = true
+    }
+    
     private func tableViewConstraints(){
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.leadingAnchor.constraint(equalTo: tableviewContainer.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: tableviewContainer.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: tableviewContainer.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: tableviewContainer.topAnchor)
             ])
-        tableViewTopAnchor = tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-        tableViewTopAnchor.isActive = true
+        
+    }
+    
+    private func addSpinner(){
+        tableviewContainer.addSubview(spinner)
+        NSLayoutConstraint.activate([
+            spinner.centerXAnchor.constraint(equalTo: tableviewContainer.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: tableviewContainer.centerYAnchor),
+            spinner.heightAnchor.constraint(equalToConstant: 50),
+            spinner.widthAnchor.constraint(equalToConstant: 50)
+            ])
     }
     
     fileprivate func showDropDown(){
         navButton.setTitle("\(navButtonTitle) ⌃", for: .normal)
         dropDownHeightAnchor.constant = view.frame.height/3
-        tableViewTopAnchor.isActive = false
+        tableViewContainerTopAnchor.isActive = false
         updateTableViewTopAnchor(activate: true)
     }
     
@@ -131,27 +181,37 @@ class MainVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(NewsDataCell.self, forCellReuseIdentifier: reusableCell)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 500
     }
     
     fileprivate func hideDropDown(){
         navButton.setTitle("\(navButtonTitle) ⌄", for: .normal)
         dropDownHeightAnchor.constant = 0
-        tableViewTopAnchor.isActive = false
+        tableViewContainerTopAnchor.isActive = false
         updateTableViewTopAnchor(activate: false)
     }
     
     private func updateTableViewTopAnchor(activate:Bool){
-        tableViewTopAnchor = activate ? tableView.topAnchor.constraint(equalTo: dropDownView.bottomAnchor) : tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-        tableViewTopAnchor.isActive = true
+        tableViewContainerTopAnchor = activate ? tableView.topAnchor.constraint(equalTo: dropDownView.bottomAnchor) : tableviewContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        tableViewContainerTopAnchor.isActive = true
         
         
     }
     
+    private func retriveData(){
+        
+        retriveData(item: navButtonTitle)
+    }
+    
     func animatedDropDown(tag:Int){
-        UIView.animate(withDuration: 0.5) {
-            tag == 0 ? self.showDropDown() : self.hideDropDown()
-            self.view.layoutIfNeeded()
-        }
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.35, initialSpringVelocity: 20.0, options: [], animations: {
+            UIView.animate(withDuration: 0.5) {
+                tag == 0 ? self.showDropDown() : self.hideDropDown()
+                self.view.layoutIfNeeded()
+            }
+        }, completion: nil)
+        
     }
     
 }
@@ -175,30 +235,44 @@ extension MainVC:DropDownDelegate{
         guard let session = requestInfo?.session, let request = requestInfo?.request else {
             return
         }
-        
+        tableClean()
         newsService.retrieveDataFromServer(session: session, request: request) {[weak self] (status) in
             
             guard let self = self else{return}
-            print("completed")
-            print(NewsDataService.service.getNewsDetails().count)
+            
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self.completionTask()
             }
             
         }
         
     }
+    
+    fileprivate func completionTask(){
+        tableView.reloadData()
+        tableView.isHidden = false
+        spinner.stopAnimating()
+    }
+    
+    fileprivate func tableClean(){
+        tableView.isHidden = true
+        spinner.startAnimating()
+        tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
 }
 
 extension MainVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        print(newsDataService.getNewsDetails().count)
         return newsDataService.getNewsDetails().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reusableCell, for: indexPath) as? NewsDataCell else{return UITableViewCell()}
+        cell.selectionStyle = .none
         cell.updateCellData(newsData: newsDataService.getNewsDetails()[indexPath.row])
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }

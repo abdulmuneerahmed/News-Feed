@@ -44,3 +44,11 @@ class CustomImageView:UIImageView{
         }.resume()
     }
 }
+
+
+extension UIImage {
+    func getcropRatio()->CGFloat{
+        let widthRatio = CGFloat(self.size.width/self.size.height)
+        return widthRatio
+    }
+}

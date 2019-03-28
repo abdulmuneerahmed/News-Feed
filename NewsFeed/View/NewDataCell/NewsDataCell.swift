@@ -21,26 +21,28 @@ class NewsDataCell:UITableViewCell{
     
     fileprivate lazy var headingLabel:UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Avenirnext-Heavyitalic", size: 20)
+        label.font = UIFont(name: "Avenirnext-Heavyitalic", size: 18)
         label.numberOfLines = 0
         label.textColor = .black
-        label.textAlignment = .center
+        label.textAlignment = .justified
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     fileprivate lazy var imageBanner:CustomImageView = {
         let imageView = CustomImageView()
-        imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .gray
+        imageView.layer.cornerRadius = 8
+        imageView.image = UIImage(named: "new")
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     fileprivate lazy var descriptionLabel:UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Avenirnext-Heavy", size: 18)
-        label.textColor = .gray
+        label.font = UIFont(name: "Avenirnext-Bold", size: 17)
+        label.textColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1)
         label.numberOfLines = 0
         label.textAlignment = .justified
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -49,63 +51,88 @@ class NewsDataCell:UITableViewCell{
     
     fileprivate lazy var topicLabel:UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Avenirnext", size: 18)
-        label.textColor = .lightGray
-        label.textAlignment = .center
+        label.font = UIFont(name: "Avenirnext-Demibolditalic", size: 15)
+        label.textColor = .gray
+        label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     fileprivate lazy var authorLabel:UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Avenirnext", size: 18)
-        label.textColor = .lightGray
-        label.textAlignment = .center
+        label.font = UIFont(name: "Avenirnext-Demibolditalic", size: 15)
+        label.textColor = .gray
+        label.numberOfLines = 3
+        label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    
+    fileprivate lazy var cardView:UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 10
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     fileprivate func addCellViews(){
-        addSubview(headingLabel)
+        
+        addSubview(cardView)
+        
         NSLayoutConstraint.activate([
-            headingLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            headingLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            headingLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            cardView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            cardView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            cardView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            cardView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
             ])
-        addSubview(imageBanner)
+        cardViewEffects()
+        let horitzonalView = stackViews(views: [topicLabel,authorLabel])
+        horitzonalView.axis = .horizontal
+        horitzonalView.spacing = 10
+        let stackView = stackViews(views:[headingLabel,imageBanner,descriptionLabel,horitzonalView])
+        
+        cardView.addSubview(stackView)
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 10
         NSLayoutConstraint.activate([
-            imageBanner.topAnchor.constraint(equalTo: headingLabel.bottomAnchor),
-            imageBanner.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            imageBanner.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            imageBanner.heightAnchor.constraint(equalToConstant: 100)
-            ])
-        addSubview(descriptionLabel)
-        NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: imageBanner.bottomAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            ])
-        addSubview(topicLabel)
-        NSLayoutConstraint.activate([
-            topicLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
-            topicLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            topicLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            topicLabel.widthAnchor.constraint(equalToConstant: 150)
+            stackView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 10),
+            stackView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -10),
+            stackView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -10)
             ])
         
-        addSubview(authorLabel)
         NSLayoutConstraint.activate([
-            topicLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
-            topicLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            topicLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            topicLabel.widthAnchor.constraint(equalToConstant: 200)
+            imageBanner.heightAnchor.constraint(equalToConstant: 300),
             ])
+        
+
+
+    }
+    
+    fileprivate func cardViewEffects(){
+        cardView.layer.shadowColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 153/255).cgColor
+        cardView.layer.borderColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        cardView.layer.borderWidth = 0.1
+        cardView.layer.shadowOffset = CGSize(width: 8, height: 8)
+        cardView.layer.shadowRadius = 8
+        cardView.layer.shadowOpacity = 0.8
+    }
+    
+    fileprivate func stackViews(views:[UIView]) -> UIStackView{
+        let stackView = UIStackView(arrangedSubviews: views)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }
     
     func updateCellData(newsData:NewsData){
         
         if !newsData.imageString.isEmpty{
             imageBanner.loadImageUsingURLString(urlString: newsData.imageString)
+        }else{
+            imageBanner.image = UIImage(named: "new")
         }
         headingLabel.text = newsData.headLines
         descriptionLabel.text = newsData.description

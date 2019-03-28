@@ -65,7 +65,7 @@ class NewsApi{
                     if results.multimedia.isEmpty{
                         self.service.newsDetails.append(NewsData(imageString: "", headLines: title, description: abstract, newsType: section, author: byline))
                     }else{
-                        let imageData = results.multimedia[3].url
+                        let imageData = results.multimedia[4].url
                         self.service.newsDetails.append(NewsData(imageString: imageData, headLines: title, description: abstract, newsType: section, author: byline))
                     }
                     
