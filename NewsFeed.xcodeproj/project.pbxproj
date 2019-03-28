@@ -21,7 +21,7 @@
 		842E4BE0224BC61C00D936C8 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BDF224BC61C00D936C8 /* NewsData.swift */; };
 		842E4BE2224BC88A00D936C8 /* NewsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BE1224BC88A00D936C8 /* NewsDataService.swift */; };
 		842E4BE5224BD42B00D936C8 /* NewsDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BE4224BD42B00D936C8 /* NewsDataCell.swift */; };
-		842E4BE8224BDB2600D936C8 /* imageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BE7224BDB2600D936C8 /* imageExtension.swift */; };
+		842E4BE8224BDB2600D936C8 /* imageClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E4BE7224BDB2600D936C8 /* imageClass.swift */; };
 		A4A2FBCE7B26E20293C58575 /* Pods_NewsFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EAB03697E6ACDD61282A44 /* Pods_NewsFeed.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +45,7 @@
 		842E4BDF224BC61C00D936C8 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
 		842E4BE1224BC88A00D936C8 /* NewsDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataService.swift; sourceTree = "<group>"; };
 		842E4BE4224BD42B00D936C8 /* NewsDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataCell.swift; sourceTree = "<group>"; };
-		842E4BE7224BDB2600D936C8 /* imageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageExtension.swift; sourceTree = "<group>"; };
+		842E4BE7224BDB2600D936C8 /* imageClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +101,7 @@
 				842E4BD8224B909E00D936C8 /* Apis */,
 				842E4BC4224B590500D936C8 /* Model */,
 				842E4BC5224B590B00D936C8 /* View */,
-				842E4BC6224B591200D936C8 /* Controller */,
+				842E4BC6224B591200D936C8 /* Presenter */,
 				8433FC94224CFF4E00FBFED5 /* SupportFiles */,
 				842E4BBC224B523F00D936C8 /* Info.plist */,
 			);
@@ -121,7 +121,7 @@
 		842E4BC5224B590B00D936C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				842E4BE6224BDB0400D936C8 /* Extension */,
+				842E4BE6224BDB0400D936C8 /* CustomImageClass */,
 				842E4BE3224BD3FD00D936C8 /* NewDataCell */,
 				842E4BCA224B5BAC00D936C8 /* DropDownMenu */,
 				842E4BB9224B523F00D936C8 /* LaunchScreen.storyboard */,
@@ -130,13 +130,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		842E4BC6224B591200D936C8 /* Controller */ = {
+		842E4BC6224B591200D936C8 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
 				842E4BB2224B523E00D936C8 /* MainVC.swift */,
 				842E4BC8224B5A4600D936C8 /* MainvcExtension.swift */,
 			);
-			path = Controller;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		842E4BCA224B5BAC00D936C8 /* DropDownMenu */ = {
@@ -190,12 +190,12 @@
 			path = NewDataCell;
 			sourceTree = "<group>";
 		};
-		842E4BE6224BDB0400D936C8 /* Extension */ = {
+		842E4BE6224BDB0400D936C8 /* CustomImageClass */ = {
 			isa = PBXGroup;
 			children = (
-				842E4BE7224BDB2600D936C8 /* imageExtension.swift */,
+				842E4BE7224BDB2600D936C8 /* imageClass.swift */,
 			);
-			path = Extension;
+			path = CustomImageClass;
 			sourceTree = "<group>";
 		};
 		8433FC94224CFF4E00FBFED5 /* SupportFiles */ = {
@@ -333,7 +333,7 @@
 				842E4BE0224BC61C00D936C8 /* NewsData.swift in Sources */,
 				842E4BD1224B627C00D936C8 /* DropDownModel.swift in Sources */,
 				842E4BE2224BC88A00D936C8 /* NewsDataService.swift in Sources */,
-				842E4BE8224BDB2600D936C8 /* imageExtension.swift in Sources */,
+				842E4BE8224BDB2600D936C8 /* imageClass.swift in Sources */,
 				842E4BD7224B803B00D936C8 /* StoryData.swift in Sources */,
 				842E4BD3224B62B300D936C8 /* DropDownService.swift in Sources */,
 				842E4BDA224B90BD00D936C8 /* NewsApi.swift in Sources */,
